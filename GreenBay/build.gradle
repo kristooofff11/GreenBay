@@ -1,0 +1,52 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //Spring boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    //Spring JPA and database
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    //Spring security
+    implementation 'org.springframework.security:spring-security-web:5.7.3'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-core:5.7.3'
+    implementation 'com.auth0:java-jwt:4.0.0'
+
+    //Flyway
+    implementation "org.flywaydb:flyway-sqlserver"
+    implementation "org.flywaydb:flyway-mysql"
+    implementation 'org.flywaydb:flyway-mysql:9.4.0'
+    implementation "org.flywaydb:flyway-core:9.4.0"
+
+    //Dotenv
+    implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+
+    //Testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
